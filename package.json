@@ -1,0 +1,22 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huangxin290/algorithm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huangxin290/algorithm/issues"
+  },
+  "homepage": "https://github.com/huangxin290/algorithm#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
