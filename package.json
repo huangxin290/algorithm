@@ -18,5 +18,8 @@
   "homepage": "https://github.com/huangxin290/algorithm#readme",
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.35.0"
   }
 }

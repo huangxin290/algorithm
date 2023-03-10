@@ -1,4 +1,4 @@
-const { isEqual, multiply } = require("lodash")
+const { isEqual, multiply } = require('lodash')
 
 /**
  * 如果你熟悉 Shell 编程，那么一定了解过花括号展开，它可以用来生成任意字符串。
@@ -29,78 +29,77 @@ const { isEqual, multiply } = require("lodash")
  * @param {string} expression
  * @return {string[]}
  */
-var braceExpansionII = function(expression) {
-  if(expression.startsWith('{') && findExpressionEndIndex(expression, 0) === expression.length - 1){
+var braceExpansionII = function (expression) {
+  if (expression.startsWith('{') && findExpressionEndIndex(expression, 0) === expression.length - 1) {
     var res = []
     var braceIndex = 0
     var startIndex = 1
-    for(let i=1;i<expression.length - 1;i++){
+    for (let i = 1; i < expression.length - 1; i++) {
       var item = expression[i]
-      if(item === '{'){
-        braceIndex ++
-      }else if(item === '}'){
-        braceIndex --
-      }else if(item === ',' && braceIndex === 0){
+      if (item === '{') {
+        braceIndex++
+      } else if (item === '}') {
+        braceIndex--
+      } else if (item === ',' && braceIndex === 0) {
         var arr = braceExpansionII(expression.substring(startIndex, i))
-        arr.map(item=>{
-          if(res.indexOf(item) === -1){
+        arr.map((item) => {
+          if (res.indexOf(item) === -1) {
             res.push(item)
           }
         })
-        startIndex = i+1
+        startIndex = i + 1
       }
-      if(i === expression.length - 2){
-        var arr = braceExpansionII(expression.substring(startIndex, i+1))
-        arr.map(item=>{
-          if(res.indexOf(item) === -1){
+      if (i === expression.length - 2) {
+        var arr = braceExpansionII(expression.substring(startIndex, i + 1))
+        arr.map((item) => {
+          if (res.indexOf(item) === -1) {
             res.push(item)
           }
         })
       }
     }
     return res.sort()
-  }else if(expression.length === 1){
+  } else if (expression.length === 1) {
     return [expression]
-  }else {
+  } else {
     var res = []
     var braceIndex = 0
     var startIndex = 0
-    for(let i=0;i<expression.length;i++){
+    for (let i = 0; i < expression.length; i++) {
       var item = expression[i]
-      
-      if(item === '{'){
-        if(braceIndex === 0){
+
+      if (item === '{') {
+        if (braceIndex === 0) {
           startIndex = i
         }
-        braceIndex ++
-        
-      }else if(item ==='}'){
-        braceIndex --
-        if(braceIndex === 0){
-          var arr = braceExpansionII(expression.substring(startIndex, i+1))
+        braceIndex++
+      } else if (item === '}') {
+        braceIndex--
+        if (braceIndex === 0) {
+          var arr = braceExpansionII(expression.substring(startIndex, i + 1))
           res = getMultiplyTwoArray(res, arr)
         }
-      }else if(item!==',' && braceIndex === 0){
-        if(res.length){
-          res = res.map(resItem => resItem + item)
-        }else{
+      } else if (item !== ',' && braceIndex === 0) {
+        if (res.length) {
+          res = res.map((resItem) => resItem + item)
+        } else {
           res.push(item)
         }
-      } 
+      }
     }
     return res.sort()
   }
-};
+}
 
-function findExpressionEndIndex(expression, startIndex){
+function findExpressionEndIndex(expression, startIndex) {
   var index = 0
-  for(let i=startIndex;i<expression.length;i++){
-    if(expression[i] === '{'){
-      index ++
+  for (let i = startIndex; i < expression.length; i++) {
+    if (expression[i] === '{') {
+      index++
     }
-    if(expression[i] === '}'){
-      index --
-      if(index === 0){
+    if (expression[i] === '}') {
+      index--
+      if (index === 0) {
         return i
       }
     }
@@ -108,26 +107,26 @@ function findExpressionEndIndex(expression, startIndex){
   return index
 }
 
-function getMultiplyTwoArray(res, arr){
-  if(res.length === 0){
+function getMultiplyTwoArray(res, arr) {
+  if (res.length === 0) {
     return arr
   }
-  if(arr.length === 0){
+  if (arr.length === 0) {
     return res
   }
   var ans = []
-  for(let i = 0;i<res.length;i++){
-    for(let j=0;j<arr.length;j++){
-      ans.push(res[i]+arr[j])
+  for (let i = 0; i < res.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      ans.push(res[i] + arr[j])
     }
   }
   return ans
 }
 
-console.assert(isEqual(braceExpansionII('{a,b}{c,{d,e}}'), ["ac","ad","ae","bc","bd","be"]), 'test1 failed')
+console.assert(isEqual(braceExpansionII('{a,b}{c,{d,e}}'), ['ac', 'ad', 'ae', 'bc', 'bd', 'be']), 'test1 failed')
 
-console.assert(isEqual(braceExpansionII('{{a,z},a{b,c},{ab,z}}'), ["a","ab","ac","z"]), 'test2 failed')
+console.assert(isEqual(braceExpansionII('{{a,z},a{b,c},{ab,z}}'), ['a', 'ab', 'ac', 'z']), 'test2 failed')
 
-console.assert(isEqual(braceExpansionII('a'), ["a"]), 'test3 failed')
+console.assert(isEqual(braceExpansionII('a'), ['a']), 'test3 failed')
 
-console.assert(isEqual(braceExpansionII('a{b,c}{d,e}f{g,h}'), ["abdfg", "abdfh", "abefg", "abefh", "acdfg", "acdfh", "acefg", "acefh"]), 'test1 failed')
+console.assert(isEqual(braceExpansionII('a{b,c}{d,e}f{g,h}'), ['abdfg', 'abdfh', 'abefg', 'abefh', 'acdfg', 'acdfh', 'acefg', 'acefh']), 'test1 failed')
