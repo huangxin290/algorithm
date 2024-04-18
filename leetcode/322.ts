@@ -9,7 +9,19 @@
  */
 
 function coinChange(coins: number[], amount: number): number {
-    
+  const length = coins.length
+  const f = new Array(amount + 1).fill(Number.MAX_VALUE)
+  f[0] = 0
+  coins.map(x=>{
+    for(let c = x;c<=amount;c++){
+      f[c] = Math.min(f[c], f[c-x] + 1)
+    }
+  })
+  if(f[amount] < Number.MAX_VALUE){
+    return f[amount]
+  }else{
+    return -1
+  }
 };
 
 console.log(coinChange([1,2,5], 11)); // 3
