@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/huangxin290/algorithm#readme",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",

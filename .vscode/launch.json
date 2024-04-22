@@ -5,13 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "this is the name you input",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/leetcode/886.js"
+      "program": "${workspaceFolder}/leetcode/${fileBasenameNoExtension}.ts",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ]
     }
   ]
 }
