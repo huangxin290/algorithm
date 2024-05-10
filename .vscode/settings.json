@@ -1,6 +1,6 @@
 {
   "eslint.format.enable": true,
-  "typescript.validate.enable": false,
+  "typescript.validate.enable": true,
   "editor.tabSize": 2,
   "editor.wordWrap": "on"
 }
