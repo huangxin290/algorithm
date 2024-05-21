@@ -16,26 +16,26 @@
  * @param {number[][]} grid
  * @return {number}
  */
-var cherryPickup = function(grid: number[][]):number {
+var cherryPickup = function (grid: number[][]): number {
   const n = grid.length
-  const cache:number[][][] = new Array(2*n).fill(0).map(()=>new Array(n).fill(0).map(()=>new Array(n).fill(-1)))
+  const cache: number[][][] = new Array(2 * n).fill(0).map(() => new Array(n).fill(0).map(() => new Array(n).fill(-1)))
 
   // t是t步，j是第一个人走的向右次数，k是第二个人走的向右次数
-  function dfs(t:number, j:number, k:number):number {
-    if(j< 0 || k < 0 || t<j || t<k || grid[t-j][j] === -1 || grid[t-k][k] === -1){
+  function dfs(t: number, j: number, k: number): number {
+    if (j < 0 || k < 0 || t < j || t < k || grid[t - j][j] === -1 || grid[t - k][k] === -1) {
       return Number.MIN_SAFE_INTEGER
     }
-    if(t === 0){
+    if (t === 0) {
       return grid[0][0]
     }
-    if(cache[t][j][k] !== -1){
+    if (cache[t][j][k] !== -1) {
       return cache[t][j][k]
     }
-    
-    return cache[t][j][k] = Math.max(dfs(t-1, j, k), dfs(t-1, j-1, k), dfs(t-1, j, k-1), dfs(t-1, j-1, k-1)) + grid[t-j][j] + (k!==j ? grid[t-k][k] : 0)
-  }
-  return Math.max(dfs(2*n -2, n-1, n-1), 0)
-};
 
-console.log(cherryPickup([[0,1,-1],[1,0,-1],[1,1,1]])); // 5
-console.log(cherryPickup([[1,1,-1],[1,-1,1],[-1,1,1]])); // 0
+    return cache[t][j][k] = Math.max(dfs(t - 1, j, k), dfs(t - 1, j - 1, k), dfs(t - 1, j, k - 1), dfs(t - 1, j - 1, k - 1)) + grid[t - j][j] + (k !== j ? grid[t - k][k] : 0)
+  }
+  return Math.max(dfs(2 * n - 2, n - 1, n - 1), 0)
+}
+
+console.log(cherryPickup([[0, 1, -1], [1, 0, -1], [1, 1, 1]])) // 5
+console.log(cherryPickup([[1, 1, -1], [1, -1, 1], [-1, 1, 1]])) // 0
